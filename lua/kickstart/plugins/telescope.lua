@@ -108,6 +108,11 @@ return {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = 'Browse [G]it [L]og' })
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'List [G]it [B]ranches' })
+      vim.keymap.set('n', '<leader>gf', builtin.git_bcommits, { desc = 'Browse [G]it log for current [F]ile' })
+      vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[G]it [S]tatus' })
     end,
   },
 }
