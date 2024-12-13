@@ -14,7 +14,7 @@ return {
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -32,12 +32,16 @@ return {
         }
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
+        -- :help conform-formatters for a list of available formatters
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        tex = { 'latexindent' },
+        lua = { 'stylua' },
+        python = { 'isort', 'black' },
+        zig = { 'zigfmt' },
       },
     },
   },
