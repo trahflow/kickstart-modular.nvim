@@ -33,8 +33,8 @@ return {
       end
 
       require('mini.git').setup()
-      vim.keymap.set('n', '<leader>gc', ':Git commit<CR>', { desc = '[G]it [C]ommit' })
-      vim.keymap.set('n', '<leader>ga', ':Git commit --amend<CR>', { desc = '[G]it [C]ommit' })
+      vim.keymap.set('n', '<leader>gc', ':Git commit<CR>', { desc = 'Mini: [G]it [C]ommit' })
+      vim.keymap.set('n', '<leader>ga', ':Git commit --amend<CR>', { desc = 'Mini: [G]it [C]ommit' })
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
