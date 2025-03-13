@@ -192,6 +192,8 @@ return {
         pyright = {},
         zls = {},
         julials = {},
+        ruff = {},
+        mypy = {},
 
         lua_ls = {
           -- cmd = {...},
