@@ -35,6 +35,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'micangl/cmp-vimtex',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
       -- See `:help cmp`
@@ -112,6 +113,7 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'vimtex' },
+          { name = 'nvim_lsp_signature_help' },
         },
       }
     end,
