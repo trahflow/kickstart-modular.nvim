@@ -1,6 +1,10 @@
 return {
   'yetone/avante.nvim',
   event = 'VeryLazy',
+  -- enable only if environment variable is set
+  enabled = function()
+    return os.getenv 'NVIM_AI_PROVIDER' ~= nil
+  end,
   version = false, -- Never set this value to "*"! Never!
   opts = {
     -- add any opts here

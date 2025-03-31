@@ -5,4 +5,7 @@ return {
   config = function()
     require('copilot').setup {}
   end,
+  enabled = function()
+    return os.getenv 'NVIM_AI_PROVIDER' == 'Copilot'
+  end,
 }
