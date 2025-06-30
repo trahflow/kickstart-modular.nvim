@@ -40,6 +40,12 @@ kmap('<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
 kmap('<C-d>', '<C-d>zz', 'Scroll down and recenter cursor')
 kmap('<C-u>', '<C-u>zz', 'Scroll up and recenter cursor')
 
+-- unset some global default keymaps to avoid overlap
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'gri')
+
 -- NOTE: Some terminals have coliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
