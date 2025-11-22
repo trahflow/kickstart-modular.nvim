@@ -40,6 +40,7 @@ return {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
         zig = { 'zigfmt' },
+        json = { 'jq' },
       },
     },
   },
