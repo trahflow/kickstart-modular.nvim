@@ -1,10 +1,12 @@
 return {
   'olimorris/codecompanion.nvim',
   event = 'VeryLazy', -- Lazy load for better startup performance
+  -- deactivated because sidekick is used instead
+  enabled = false,
   -- enable only if environment variable is set
-  enabled = function()
-    return os.getenv 'NVIM_AI_PROVIDER' ~= nil
-  end,
+  -- enabled = function()
+  --   return os.getenv 'NVIM_AI_PROVIDER' ~= nil
+  -- end,
   opts = function()
     return {
       adapters = {
