@@ -5,21 +5,35 @@ return {
   enabled = function()
     return os.getenv 'NVIM_AI_PROVIDER' ~= nil
   end,
-  opts = {
-    strategies = {
-      chat = {
-        adapter = 'copilot',
+  opts = function()
+    return {
+      adapters = {
+        http = {
+          copilot = function()
+            return require('codecompanion.adapters').extend('copilot', {
+              schema = {
+                model = {
+                  default = 'claude-sonnet-4',
+                },
+              },
+            })
+          end,
+        },
       },
-      inline = {
-        adapter = 'copilot',
+      extensions = {
+        vectorcode = {
+          enabled = false,
+        },
       },
-      agent = {
-        adapter = 'copilot',
-      },
-    },
-  },
+    }
+  end,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
+    -- 'Davidyz/VectorCode',
+  },
+  keys = {
+    { '<leader>aa', ':CodeCompanionActions<CR>', mode = 'n', desc = 'Codecompanion: Open Actions' },
+    { '<leader>ac', ':CodeCompanionChat<CR>', mode = 'n', desc = 'Codecompanion: Chat' },
   },
 }
