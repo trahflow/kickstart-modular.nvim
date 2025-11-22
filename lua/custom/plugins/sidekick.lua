@@ -1,5 +1,8 @@
 return {
   'folke/sidekick.nvim',
+  enabled = function()
+    return os.getenv 'NVIM_AI_PROVIDER' ~= nil
+  end,
   opts = {
     -- add any options here
     cli = {
