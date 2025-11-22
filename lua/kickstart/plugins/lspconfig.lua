@@ -226,6 +226,7 @@ return {
         julials = {},
         ruff = {},
         mypy = {},
+        copilot = {},
 
         lua_ls = {
           -- cmd = { ... },
