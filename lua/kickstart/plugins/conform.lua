@@ -38,7 +38,7 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         tex = { 'latexindent' },
         lua = { 'stylua' },
-        python = { 'isort', 'black' },
+        python = { 'ruff_fix' },
         zig = { 'zigfmt' },
         json = { 'jq' },
       },
