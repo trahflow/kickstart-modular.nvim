@@ -223,7 +223,6 @@ return {
         pyright = {},
         zls = {},
         julials = {},
-        ruff = {},
         mypy = {},
         copilot = {},
 
