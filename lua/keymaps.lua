@@ -1,18 +1,27 @@
 -- [[ Basic Keymaps ]]
 --  See `:help kmap()`
 
--- Define local function that sets prefix for description
-local kmap = function(keys, func, desc, mode)
-  mode = mode or 'n'
-  vim.keymap.set(mode, keys, func, { desc = 'Global: ' .. desc })
-end
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-kmap('<Esc>', '<cmd>nohlsearch<CR>', 'Clear highlights on search when pressing <Esc> in normal mode')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-kmap('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
+-- Diagnostic Config & Keymaps
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config {
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+
+  -- Can switch between these as you prefer
+  virtual_text = true, -- Text shows up at the end of the line
+  virtual_lines = false, -- Text shows up underneath the line, with virtual lines
+
+  -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+  jump = { float = true },
+}
+
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -20,25 +29,25 @@ kmap('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-kmap('<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode', 't')
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- kmap('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- kmap('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- kmap('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- kmap('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-kmap('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
-kmap('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
-kmap('<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
-kmap('<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-kmap('<C-d>', '<C-d>zz', 'Scroll down and recenter cursor')
-kmap('<C-u>', '<C-u>zz', 'Scroll up and recenter cursor')
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and recenter cursor' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and recenter cursor' })
 
 -- unset some global default keymaps to avoid overlap
 vim.keymap.del('n', 'grn')
@@ -61,9 +70,7 @@ vim.keymap.del('n', 'gri')
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Global: Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- vim: ts=2 sts=2 sw=2 et
